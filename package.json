@@ -1,0 +1,12 @@
+{
+  "name": "join-paper-eval",
+  "version": "1.0.0",
+  "scripts": {
+    "build": "tsc",
+    "run": "node",
+    "start": "npm run build && npm run"
+  },
+  "dependencies": {
+    "fs-extra": "^11.1.1"
+  }
+}
