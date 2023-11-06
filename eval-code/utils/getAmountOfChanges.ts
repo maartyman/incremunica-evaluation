@@ -1,11 +1,15 @@
-import {getChanges} from "./extract-changes";
+import {getChanges} from "./getChanges";
 
-export async function getAmountOfChanges(basePath: string, config: any, operationName: string, transformationNr: number): Promise<{
+export async function getAmountOfChanges(
+  basePath: string,
+  operationName: string,
+  transformationNr: number,
+  config?: any
+): Promise<{
   additions: number,
   deletions: number
 }> {
-  let changes = await getChanges(basePath, config, operationName, transformationNr);
-  console.log(changes)
+  let changes = await getChanges(basePath, operationName, transformationNr, config);
 
   let result = {
     additions: 0,
@@ -26,13 +30,15 @@ export async function getAmountOfChanges(basePath: string, config: any, operatio
 function test_getAmountOfChanges() {
   getAmountOfChanges(
     '/home/maarten/Documents/doctoraat/join paper eval/train-bencmark-2023-09-28-00-00',
+    'repair switch monitored',
+    2,
     {
       "matchTransformPercentage": 30,
-      "randomSeed": "incremunica",
-      "queryEngineConfig": "/users/maavdnbr/incremunica-train-benchmark/data/configs/partial-hash-join/config.json",
-      "dataPath": "/users/maavdnbr/incremunica-train-benchmark/data/models/railway-inject-1-inferred.ttl",
-      "cachedResultsBasePath": "/users/maavdnbr/incremunica-train-benchmark/data/cachedResults/",
-      "operationStings": [
+        "randomSeed": "incremunica",
+        "queryEngineConfig": "/users/maavdnbr/incremunica-train-benchmark/data/configs/partial-hash-join/config.json",
+        "dataPath": "/users/maavdnbr/incremunica-train-benchmark/data/models/railway-inject-1-inferred.ttl",
+        "cachedResultsBasePath": "/users/maavdnbr/incremunica-train-benchmark/data/cachedResults/",
+        "operationStings": [
         "BatchSwitchMonitored",
         "InjectSwitchMonitored",
         "RepairSwitchMonitored"
@@ -41,8 +47,6 @@ function test_getAmountOfChanges() {
       "numberOfTransforms": 5,
       "runNr": -1
     },
-    'repair switch monitored',
-    2
   ).then((data) => {
     console.log(data)
   })

@@ -3,3 +3,5 @@ node_modules/*
 .idea/*
 *.js
 *.js.map
+data.csv
+data.json

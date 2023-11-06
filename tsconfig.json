@@ -6,6 +6,7 @@
     "downlevelIteration": true
   },
   "exclude": [
-    "train-bencmark-*/*"
+    "data/*",
+    "node_modules/*"
   ]
 }
